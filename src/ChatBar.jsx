@@ -3,6 +3,13 @@ import React, {Component} from 'react';
 class ChatBar extends Component {
 
   render () {
+    const onSecondKeyPress = evt => {
+      if (evt.target.value.length > 0) {
+        evt.preventDefault();
+        this.props.nameChanger(evt.target.value);
+        evt.target.value = '';
+      }
+    }
     const onKeyPress = evt => {
 
       if (evt.key === 'Enter') {
@@ -17,7 +24,7 @@ class ChatBar extends Component {
     };
     return (
       <footer className="chatbar">
-        <input name="chatName" className="chatbar-username" placeholder={this.props.name} />
+        <input onBlur={onSecondKeyPress} name="chatName" className="chatbar-username" placeholder={this.props.name} />
         <input onKeyPress={onKeyPress} className="chatbar-message" placeholder="Type a message and hit ENTER" />
       </footer>
     )

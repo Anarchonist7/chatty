@@ -11,12 +11,24 @@ class MessageList extends Component {
     const messagesToPrint = messages.map((messi) => {
      return <Message key={messi.id} stuff={messi}/>
     });
+
+    if (this.props.currentUser.name !== 'Anonymous') {
+
     return (
       <main className="messages">
 
         {messagesToPrint}
         <div className="message system">
-          Anonymous1 changed their name to nomnom.
+          {this.props.previousUser.name} change their name to {this.props.currentUser.name}
+        </div>
+      </main>
+    )
+    }
+    return (
+      <main className="messages">
+
+        {messagesToPrint}
+        <div className="message system">
         </div>
       </main>
     )

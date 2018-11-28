@@ -8,10 +8,18 @@ class App extends Component {
     super(props);
 
     this.handler = this.handler.bind(this);
+    this.nameChanger = this.nameChanger.bind(this);
     this.state = {
-      currentUser: {name: 'hob'},
+      currentUser: {name: 'Anonymous'},
+      previousUser: {name: 'Anonymous'},
       messages: []
     }
+  }
+
+  nameChanger(newName) {
+    console.log('hey its the new name! ', newName);
+    this.setState({ previousUser: {name: this.state.currentUser.name}})
+    this.setState({ currentUser: {name: newName}});
   }
 
   handler(newMsg) {
@@ -41,7 +49,7 @@ class App extends Component {
       <body>
         <NavBar/>
         <MessageList {...this.state}/>
-        <ChatBar nameChanger={this.nameChanger} handler={this.handler} {...this.state.currentUser}/>
+        <ChatBar nameChanger={this.nameChanger} nameChange={this.nameChange} handler={this.handler} {...this.state.currentUser}/>
       </body>
     );
   }
