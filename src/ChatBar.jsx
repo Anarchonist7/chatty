@@ -6,6 +6,7 @@ class ChatBar extends Component {
     const onSecondKeyPress = evt => {
       if (evt.target.value.length > 0) {
         evt.preventDefault();
+        this.setState({ newName: evt.target.value})
         this.props.nameChanger(evt.target.value);
         evt.target.value = '';
       }

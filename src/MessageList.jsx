@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Message from './Message.jsx';
-
+//this goes in message system, might change to component for reasons
+// {this.props.previousUser.name} changed their name to {this.props.currentUser.name}
 
 
 class MessageList extends Component {
@@ -19,7 +20,7 @@ class MessageList extends Component {
 
         {messagesToPrint}
         <div className="message system">
-          {this.props.previousUser.name} change their name to {this.props.currentUser.name}
+
         </div>
       </main>
     )
