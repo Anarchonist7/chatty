@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import NavBar from './Nav.jsx';
-var inci = 3;
+var inci = 2;
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class App extends Component {
     this.handler = this.handler.bind(this);
 
     this.state = {
-      currentUser: {name: 'anonymous'},
+      currentUser: {name: 'hob'},
       messages: [
         {
           id: 1,
@@ -29,7 +29,7 @@ class App extends Component {
 
   handler(newMsg) {
     var idee = inci++;
-    const newMessage = {id: idee, username: 'Bob', content: newMsg};
+    const newMessage = {id: idee, username: this.state.currentUser.name, content: newMsg};
     const messages = this.state.messages.concat(newMessage);
     this.setState({
       messages: messages
