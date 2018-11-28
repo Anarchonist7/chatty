@@ -7,14 +7,14 @@ class MessageList extends Component {
 
 
   render () {
-    let some = this.props.messages;
-    let list = some.map((messi) => {
+    const messages = this.props.messages;
+    const messagesToPrint = messages.map((messi) => {
      return <Message key={messi.id} stuff={messi}/>
     });
     return (
       <main className="messages">
 
-        {list}
+        {messagesToPrint}
         <div className="message system">
           Anonymous1 changed their name to nomnom.
         </div>

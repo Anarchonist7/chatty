@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import NavBar from './Nav.jsx';
-var inci = 2;
+let inci = 3;
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.handler = this.handler.bind(this);
-
     this.state = {
       currentUser: {name: 'hob'},
       messages: [
@@ -28,33 +27,30 @@ class App extends Component {
   }
 
   handler(newMsg) {
-    var idee = inci++;
+    const idee = inci++;
     const newMessage = {id: idee, username: this.state.currentUser.name, content: newMsg};
     const messages = this.state.messages.concat(newMessage);
-    this.setState({
-      messages: messages
-    });
+    console.log(newMessage);
+    this.socket.send('User ' + this.state.currentUser.name + ' said ' + newMessage.content);
+
+    this.setState({ messages: messages });
   }
 
-  // componentDidMount() {
-  //   console.log("componentDidMount <App />");
-  //   setTimeout(() => {
-  //     console.log("Simulating incoming message");
-  //     // Add a new message to the list of messages in the data store
-  //     const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
-  //     const messages = this.state.messages.concat(newMessage)
-  //     // Update the state of the app component.
-  //     // Calling setState will trigger a call to render() in App and all child components.
-  //     this.setState({messages: messages})
-  //   }, 3000);
-  // }
+  componentDidMount() {
+  var exampleSocket = new WebSocket("ws://localhost:3001");
+  this.socket = exampleSocket;
+  exampleSocket.onopen = function (event) {
+  console.log('connected to server');
+  exampleSocket.send("Here's some text that the server is urgently awaiting!");
+};
+  }
 
   render() {
     return (
       <body>
         <NavBar/>
         <MessageList {...this.state}/>
-        <ChatBar handler={this.handler} {...this.state}/>
+        <ChatBar nameChanger={this.nameChanger} handler={this.handler} {...this.state.currentUser}/>
       </body>
     );
   }

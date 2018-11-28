@@ -6,20 +6,18 @@ class ChatBar extends Component {
     const onKeyPress = evt => {
 
       if (evt.key === 'Enter') {
-        evt.preventDefault();
         const chatMessageInput = evt.target;
+        evt.preventDefault();
 
-      // Here, we call the function we were sent
-        this.props.handler(chatMessageInput.value);
-
-        chatMessageInput.value = '';
+        if (chatMessageInput.value.length !== 0) {
+          this.props.handler(chatMessageInput.value);
+          chatMessageInput.value = '';
+        }
       }
-
-//makes another function to change chatname
     };
     return (
       <footer className="chatbar">
-        <input name="chatName" className="chatbar-username" placeholder={this.props.currentUser.name} />
+        <input name="chatName" className="chatbar-username" placeholder={this.props.name} />
         <input onKeyPress={onKeyPress} className="chatbar-message" placeholder="Type a message and hit ENTER" />
       </footer>
     )
