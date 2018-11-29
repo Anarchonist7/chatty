@@ -20,6 +20,20 @@ let clients = 0;
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
+  function genColor() {
+    let genny = Math.floor(Math.random() * 4 + 1)
+
+    if (genny === 1) {
+      return 'purple';
+    } else if (genny === 2) {
+      return 'green';
+    } else if (genny === 3) {
+      return 'red';
+    } else {
+      return 'blue';
+    }
+  }
+  ws.color = genColor();
   clients++;
   // console.log('we have ' + clients + ' number of users online')
   let population1 = {type: 'pop', population: clients}
@@ -38,6 +52,7 @@ switch (msg.type) {
       const uuidv1 = require('uuid/v1')
       withId.id = uuidv1();
       withId.type = 'incomingMessage';
+      withId.color = ws.color;
       wss.clients.forEach(function each(client) {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify(withId));

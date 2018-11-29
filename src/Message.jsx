@@ -6,7 +6,7 @@ class Message extends Component {
     return (
       <div>
         <div className="message">
-          <span className="message-username">{this.props.stuff.username}</span>
+          <span className={this.props.color}>{this.props.stuff.username}</span>
           <span className="message-content">{this.props.stuff.content}</span>
         </div>
       </div>

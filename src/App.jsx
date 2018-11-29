@@ -10,7 +10,7 @@ class App extends Component {
     this.handler = this.handler.bind(this);
     this.nameChanger = this.nameChanger.bind(this);
     this.state = {
-      currentUser: {name: 'Anonymous'},
+      currentUser: {name: 'Anonymous', color: 'black'},
       previousUser: {name: 'Anonymous'},
       oldName: 'Anonymous',
       newName: 'Anonymous',
@@ -46,7 +46,8 @@ class App extends Component {
     const msg = JSON.parse(event.data);
     switch (msg.type) {
       case 'incomingMessage':
-        const messages = this.state.messages.concat(JSON.parse(event.data));
+        const messages = this.state.messages.concat(msg);
+        this.setState({ curentUser: {color: msg.color}})
         this.setState({ messages: messages });
         break;
       case 'incomingNotification':
