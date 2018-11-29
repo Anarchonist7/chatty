@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
 
 class ChatBar extends Component {
+  constructor() {
+    super();
 
+    this.state = {newName: 'Anonymous'}
+  }
   render () {
+    let yah;
     const onSecondKeyPress = evt => {
       if (evt.target.value.length > 0) {
         evt.preventDefault();
-        this.setState({ newName: evt.target.value})
-        this.props.nameChanger(evt.target.value);
+        yah = evt.target.value
+
+        this.setState({ newName: yah})
+        this.props.nameChanger(yah);
         evt.target.value = '';
       }
     }
@@ -19,13 +26,15 @@ class ChatBar extends Component {
 
         if (chatMessageInput.value.length !== 0) {
           this.props.handler(chatMessageInput.value);
+          console.log(this.state.newName)
+
           chatMessageInput.value = '';
         }
       }
     };
     return (
       <footer className="chatbar">
-        <input onBlur={onSecondKeyPress} name="chatName" className="chatbar-username" placeholder={this.props.name} />
+        <input onBlur={onSecondKeyPress} maxLength="10" name="chatName" className="chatbar-username" placeholder={this.props.name} />
         <input onKeyPress={onKeyPress} className="chatbar-message" placeholder="Type a message and hit ENTER" />
       </footer>
     )

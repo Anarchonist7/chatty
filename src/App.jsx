@@ -12,23 +12,31 @@ class App extends Component {
     this.state = {
       currentUser: {name: 'Anonymous'},
       previousUser: {name: 'Anonymous'},
-      messages: []
+      oldName: 'Anonymous',
+      newName: 'Anonymous',
+      messages: [],
+      id: null
+
     }
   }
 
   nameChanger(newName) {
-    console.log('hey its the new name! ', newName);
-    this.setState({ previousUser: {name: this.state.currentUser.name}})
+    console.log('check it: ', newName, this.state.currentUser.name);
+    // this.setState({ previousUser: {name: this.state.currentUser.name}})
+    if (newName !== this.state.currentUser.name) {
+    this.socket.send(JSON.stringify({type: 'postNotification', newName: newName, previousName: this.state.currentUser.name}));
+    this.setState({oldName: this.state.currentUser.name})
     this.setState({ currentUser: {name: newName}});
+    }
   }
 
   handler(newMsg) {
-    const newMessage = {username: this.state.currentUser.name, content: newMsg};
+    const newMessage = {type: 'postMessage', username: this.state.currentUser.name, content: newMsg};
+    console.log('this is what we send ', newMessage)
     this.socket.send(JSON.stringify(newMessage));
-    // const messages = this.state.messages.concat(newMessage);
-    // this.setState({ messages: messages });
-    // this.socket.send('User ' + this.state.currentUser.name + ' said ' + newMessage.content);
   }
+
+
 
   componentDidMount() {
 
@@ -38,9 +46,21 @@ class App extends Component {
     };
 
     this.socket.onmessage = (event) => {
-      console.log('this is the event data ', event.data);
-      const messages = this.state.messages.concat(JSON.parse(event.data));
-      this.setState({ messages: messages });
+//switch statement here to handle postmessage and postnotification
+  const msg = JSON.parse(event.data);
+    switch (msg.type) {
+      case 'incomingMessage':
+        const messages = this.state.messages.concat(JSON.parse(event.data));
+
+        this.setState({ messages: messages });
+        break;
+      case 'incomingNotification':
+        const notifications = this.state.messages.concat(msg);
+        console.log('incomingNotification: ', msg)
+        console.log('message data: ', event.data);
+        this.setState({ messages: notifications });
+        break;
+      }
     }
   }
 

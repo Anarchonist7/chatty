@@ -8,32 +8,24 @@ class MessageList extends Component {
 
 
   render () {
+
+    // const some = `${this.props.oldName} changed their name to ${this.props.newName}`;
     const messages = this.props.messages;
+    console.log('messagesarray: ', messages)
     const messagesToPrint = messages.map((messi) => {
-     return <Message key={messi.id} stuff={messi}/>
+
+        return <Message key={messi.id} name={this.props.oldName} stuff={messi}/>
     });
 
-    if (this.props.currentUser.name !== 'Anonymous') {
-
-    return (
+      return (
       <main className="messages">
 
         {messagesToPrint}
         <div className="message system">
-
         </div>
       </main>
     )
     }
-    return (
-      <main className="messages">
 
-        {messagesToPrint}
-        <div className="message system">
-        </div>
-      </main>
-    )
   }
-}
-
 export default MessageList;
