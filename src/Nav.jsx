@@ -5,6 +5,7 @@ import React, {Component} from 'react';
       return (
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
+          <div className="population">{this.props.population} users online</div>
         </nav>
       )
     }

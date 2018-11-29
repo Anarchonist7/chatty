@@ -15,7 +15,8 @@ class App extends Component {
       oldName: 'Anonymous',
       newName: 'Anonymous',
       messages: [],
-      id: null
+      id: null,
+      population: 0
 
     }
   }
@@ -60,6 +61,9 @@ class App extends Component {
         console.log('message data: ', event.data);
         this.setState({ messages: notifications });
         break;
+      case 'pop':
+        this.setState({population: msg.population})
+        break;
       }
     }
   }
@@ -67,7 +71,7 @@ class App extends Component {
   render() {
     return (
       <body>
-        <NavBar/>
+        <NavBar population={this.state.population}/>
         <MessageList {...this.state}/>
         <ChatBar nameChanger={this.nameChanger} nameChange={this.nameChange} handler={this.handler} {...this.state.currentUser}/>
       </body>
