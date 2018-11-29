@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 
 class Message extends Component {
   render () {
-    console.log('this.props: ', this.props)
-
   if (this.props.stuff.type === 'incomingMessage') {
     return (
       <div>
@@ -13,12 +11,13 @@ class Message extends Component {
         </div>
       </div>
     )
-  }
+  } else if (this.props.stuff.type === 'incomingNotification') {
     return (
       <div className="notification">
         <span className="notification-content">{this.props.name} changed their name to {this.props.stuff.newName} </span>
       </div>
     )
+    }
   }
 }
 

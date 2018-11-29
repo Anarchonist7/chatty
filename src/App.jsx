@@ -17,13 +17,11 @@ class App extends Component {
       messages: [],
       id: null,
       population: 0
-
     }
   }
 
   nameChanger(newName) {
     console.log('check it: ', newName, this.state.currentUser.name);
-    // this.setState({ previousUser: {name: this.state.currentUser.name}})
     if (newName !== this.state.currentUser.name) {
     this.socket.send(JSON.stringify({type: 'postNotification', newName: newName, previousName: this.state.currentUser.name}));
     this.setState({oldName: this.state.currentUser.name})
@@ -37,8 +35,6 @@ class App extends Component {
     this.socket.send(JSON.stringify(newMessage));
   }
 
-
-
   componentDidMount() {
 
     this.socket = new WebSocket("ws://localhost:3001");
@@ -47,18 +43,14 @@ class App extends Component {
     };
 
     this.socket.onmessage = (event) => {
-//switch statement here to handle postmessage and postnotification
-  const msg = JSON.parse(event.data);
+    const msg = JSON.parse(event.data);
     switch (msg.type) {
       case 'incomingMessage':
         const messages = this.state.messages.concat(JSON.parse(event.data));
-
         this.setState({ messages: messages });
         break;
       case 'incomingNotification':
         const notifications = this.state.messages.concat(msg);
-        console.log('incomingNotification: ', msg)
-        console.log('message data: ', event.data);
         this.setState({ messages: notifications });
         break;
       case 'pop':
