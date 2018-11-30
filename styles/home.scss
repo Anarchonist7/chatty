@@ -74,9 +74,17 @@
     }
 
     .population {
-      margin-left: 90%;
+      margin-left: 87%;
       margin-top: 1em;
       font-size: 1.2em;
+    }
+
+    @media screen and (max-width: 866px) {
+      .population {
+        font-size: 1em;
+        -webkit-transition: font-size 2s;
+        transition: font-size 2s;
+      }
     }
 
     .purple {
