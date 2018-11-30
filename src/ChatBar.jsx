@@ -12,7 +12,6 @@ class ChatBar extends Component {
       if (evt.target.value.length > 0) {
         evt.preventDefault();
         yah = evt.target.value
-
         this.setState({ newName: yah})
         this.props.nameChanger(yah);
         evt.target.value = '';
@@ -26,8 +25,6 @@ class ChatBar extends Component {
 
         if (chatMessageInput.value.length !== 0) {
           this.props.handler(chatMessageInput.value);
-          console.log(this.state.newName)
-
           chatMessageInput.value = '';
         }
       }

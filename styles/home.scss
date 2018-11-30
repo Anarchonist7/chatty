@@ -73,10 +73,19 @@
       padding-left: 2em;
     }
 
+    .italics {
+      padding-top: 1px;
+      font-style: italic;
+    }
+
     .population {
       margin-left: 87%;
       margin-top: 1em;
       font-size: 1.2em;
+    }
+
+    .imageMessage {
+      max-width: 60%;
     }
 
     @media screen and (max-width: 866px) {
