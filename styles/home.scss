@@ -102,11 +102,26 @@
     }
 
     .green {
-      color: green;
+      text-align: center;
       overflow: hidden;
       margin: 5px;
       padding: 0 10px;
+      background: linear-gradient(to right, #555555 20%, #FF3FFF 40%, #FF4544 60%, #FFFFFF 80%);
+      background-size: 200% auto;
+
+      color: green;
+      background-clip: text;
+      text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: shine 1s linear infinite;
+      @keyframes shine {
+        to {
+      background-position: 200% center;
     }
+  }
+}
 
     .blue {
       color: blue;
