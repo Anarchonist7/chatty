@@ -1,6 +1,8 @@
 Chatty
 =====================
 
+A realtime chat application built using websockets
+
 ### Usage
 
 Install the dependencies and start the server.
