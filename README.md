@@ -1,4 +1,4 @@
-React Boilerplate
+Chatty
 =====================
 
 A minimal and light dev environment for ReactJS.
