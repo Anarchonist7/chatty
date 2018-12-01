@@ -7,18 +7,17 @@ class ChatBar extends Component {
     this.state = {newName: 'Anonymous'}
   }
   render () {
-    let yah;
     const onSecondKeyPress = evt => {
+      //changes a users name
       if (evt.target.value.length > 0) {
         evt.preventDefault();
-        yah = evt.target.value
-        this.setState({ newName: yah})
-        this.props.nameChanger(yah);
+        this.setState({ newName: evt.target.value})
+        this.props.nameChanger(evt.target.value);
         evt.target.value = '';
       }
     }
     const onKeyPress = evt => {
-
+      //sends a message 
       if (evt.key === 'Enter') {
         const chatMessageInput = evt.target;
         evt.preventDefault();
