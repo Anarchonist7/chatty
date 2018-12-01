@@ -5,16 +5,6 @@ A minimal and light dev environment for ReactJS.
 
 ### Usage
 
-Clone the boilerplate and create your own git repo.
-
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
-
 Install the dependencies and start the server.
 
 ```
@@ -22,6 +12,12 @@ npm install
 npm start
 open http://localhost:3000
 ```
+
+Using a new tab in terminal, cd into chatty_server and run the command
+```
+node server.js
+```
+This will start the websocket server, which must also be running for the app to work.
 
 ### Static Files
 
@@ -43,3 +39,9 @@ npm run lint
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+
+### Cool Features
+
+* Upon joining the room, users are assigned one of four colours, one of which has a cool rainbow like effect
+* Start your messages with /me to speak in italics
+* Paste an image url to display it to everyone in the chat
