@@ -17,7 +17,7 @@ class App extends Component {
       population: 0
     }
   }
-
+  
   nameChanger(newName) {
     if (newName !== this.state.currentUser.name) {
     this.socket.send(JSON.stringify({type: 'postNotification', newName: newName, previousName: this.state.currentUser.name}));
@@ -25,11 +25,11 @@ class App extends Component {
     this.setState({ currentUser: {name: newName}});
     }
   }
-
+  
   checkURL(url) {
       return(url.match(/\.(jpeg|jpg|gif|png)$/) != null)
   }
-
+  
   handler(newMsg) {
     const newMessage = {type: 'postMessage', username: this.state.currentUser.name, content: newMsg};
     this.socket.send(JSON.stringify(newMessage));
@@ -49,8 +49,8 @@ class App extends Component {
         if (msg.content.substring(0, 3) === '/me') {
           msg.type = 'incomingSlash';
         }
-         const somethang = this.checkURL(msg.content);
-          if (somethang) {
+         const isUrl = this.checkURL(msg.content);
+          if (isUrl) {
             msg.type = 'incomingImage';
           }
         const messages = this.state.messages.concat(msg);
