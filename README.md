@@ -1,8 +1,6 @@
 Chatty
 =====================
 
-A minimal and light dev environment for ReactJS.
-
 ### Usage
 
 Install the dependencies and start the server.
