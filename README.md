@@ -5,6 +5,8 @@ A realtime chat application built using websockets
 ##Screenshots
 
 ![A single user joins the room](https://raw.githubusercontent.com/Anarchonist7/chatty/master/docs/Screen%20Shot%202018-11-30%20at%207.02.39%20PM.png)
+
+![Multiple users showcase some of the app's cool features](https://raw.githubusercontent.com/Anarchonist7/chatty/master/docs/Screen%20Shot%202018-11-30%20at%207.00.29%20PM.png)
 ### Usage
 
 Install the dependencies and start the server.
